@@ -4,23 +4,9 @@ export default function RootLayout() {
   return (
     <Stack>
       <Stack.Screen
-        name="index"
+        name="/"
         options={{
-          headerShown: true,
-          title: "Home",
-          headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}
-      />
-      <Stack.Screen
-        name="(page)"
-        options={{
-          headerShown: true,
+          headerShown: false,
           title: "Important",
           headerStyle: {
             backgroundColor: '#f45119',
