@@ -26,18 +26,6 @@ export function LoginForm() {
       console.log(value)
     },
   })
-  const [status, setStatus] = React.useState<
-    "off" | "submitting" | "submitted"
-  >("off");
-
-  React.useEffect(() => {
-    if (status === "submitting") {
-      const timer = setTimeout(() => setStatus("off"), 2000);
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [status]);
 
   return (
     <Stack gap="$4" borderWidth={3} borderColor="$borderColorFocus" borderCurve="continuous" p={12}>
@@ -54,7 +42,7 @@ export function LoginForm() {
           />
           <Form.Trigger asChild disabled={status !== "off"}>
             <Button
-              icon={status === "submitting" ? () => <Spinner /> : undefined}
+              icon={true ? () => <Spinner /> : undefined}
             >
               Login
             </Button>
