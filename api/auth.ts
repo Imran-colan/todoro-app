@@ -23,3 +23,15 @@ export const register = async (email: string, password: string) => {
         return error;
     }
 }
+
+export const getUserInfo = async (email: string, password: string) => {
+    try {
+        const response = await ApiService.post('/auth/getUserData', {
+            email, password
+        });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+}

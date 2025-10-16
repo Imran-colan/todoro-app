@@ -7,7 +7,7 @@ import { config } from "@/configuration/UI.Config";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TamaguiProvider } from "tamagui";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 export default function Index() {
   const router = useRouter();

@@ -1,12 +1,14 @@
-import { authStateDataType, useAuthStore } from '@/store/authStore';
+import { useAuthStore, userDataType } from '@/store/authStore';
 import { useMutation } from '@tanstack/react-query';
 import { login, register } from '../api/auth';
 
-interface UserDataApiResponse extends authStateDataType { token: string };
+interface UserDataApiResponse extends userDataType { accessToken: string };
 
 export interface authCredentials {
     email: string
     password: string
+    accessToken?: string
+    username?: string
 }
 
 export const useAuth = () => {

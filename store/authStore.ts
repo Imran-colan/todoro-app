@@ -1,16 +1,20 @@
 import { KEY_JWT_SESSION } from "@/common/constants";
+import AppStorage from "@/utils/AppStorage";
 import { create } from "zustand";
+
+export interface userDataType {
+  email: string
+  username: string
+}
 
 export type authStateDataType = {
   isAuthenticated: boolean;
-  userData: any | null;
+  userData: userDataType | null;
 };
 
 interface AuthState extends authStateDataType {
-  setAuthState: (authState: {
-    isAuthenticated: boolean;
-    userData: any;
-    token: string;
+  setAuthState: (authState: userDataType & {
+    accessToken?: string;
   }) => void;
   clearAuthState: () => void;
 }
@@ -22,14 +26,14 @@ const initialState: authStateDataType = {
 
 export const useAuthStore = create<AuthState>((set) => ({
   ...initialState,
-  setAuthState: ({ isAuthenticated, userData, token }) =>
+  setAuthState: ({ username, email, accessToken }) =>
     set(() => {
-      if (KEY_JWT_SESSION) localStorage.setItem(KEY_JWT_SESSION, token);
-      return { isAuthenticated, userData };
+      if (KEY_JWT_SESSION && accessToken) AppStorage.setItem(KEY_JWT_SESSION, accessToken);
+      return { isAuthenticated: true, userData: { username, email } };
     }),
   clearAuthState: () =>
     set(() => {
-      localStorage.removeItem(KEY_JWT_SESSION);
+      AppStorage.removeItem(KEY_JWT_SESSION);
       return { isAuthenticated: false, userData: null };
     }),
 }));
