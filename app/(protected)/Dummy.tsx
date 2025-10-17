@@ -6,10 +6,10 @@ export default function Dummy() {
   return (
     <View>
       <Text>dummy:</Text>
-      <Link href={"/(protected)"}>
+      <Link href={"/(protected)"} asChild>
         <Button title="Go to /(protected)" />
       </Link>
-      <Link href={"/"}>
+      <Link href={"/"} asChild>
         <Button title="Go to /" />
       </Link>
     </View>

@@ -1,25 +1,29 @@
 import { useAuth } from "@/hooks/useAuth";
 import { useAuthStore } from "@/store/authStore";
-import { Redirect, router, Slot } from "expo-router";
+import { Redirect, Slot } from "expo-router";
 import { useEffect } from "react";
 
-export default function RootLayout() {
+export default function ProtectedLayout() {
   const { isAuthenticated } = useAuthStore();
   const {
     fetchUserMutationRest: { mutateAsync: fetchUserMutationAsync },
     isUserFetchingLoading,
   } = useAuth();
-
   useEffect(() => {
-    (async () => {
-      const user_data = await fetchUserMutationAsync();
-      if (!user_data?.username) return router.push("/Auth");
-    })();
+    console.log("2=============================================");
   }, []);
-    useEffect(()=>{
-    console.log("2=============================================")
-  },[])
-  if (!isUserFetchingLoading && !isAuthenticated)
-    return <Redirect href={"/Auth"} />;
+  useEffect(() => {
+    // fetch on mount
+    fetchUserMutationAsync().catch((err) => {
+      console.error("Error fetching user in protected layout:", err);
+    });
+  }, []);
+
+  // if not fetching and not authenticated, redirect
+  if (!isUserFetchingLoading && !isAuthenticated) {
+    return <Redirect href="/Auth" />;
+  }
+
+  // else, render children
   return <Slot />;
 }

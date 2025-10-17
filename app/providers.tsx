@@ -9,7 +9,7 @@ const queryClient = new QueryClient();
 
 export default function Providers() {
   useEffect(() => {
-    console.log("1=============================================");
+    console.log("1 ROOT =============================================");
   }, []);
   return (
     <TamaguiProvider config={config}>

@@ -14,10 +14,10 @@ export default function Index() {
       }}
     >
       <Text style={{ backgroundColor: "#f9f9f9", fontSize: 25 }}>HOME</Text>
-      <Link href={"/(protected)/Dummy"}>
+      <Link href={"/(protected)/Dummy"} asChild>
         <Button title="Go to /(protected)/Dummy" />
       </Link>
-      <Link href={"/Dummy"}>
+      <Link href={"/Dummy"} asChild>
         <Button title="Go to /Dummy" />
       </Link>
         <Button title="Log out" onPress={logout} />
