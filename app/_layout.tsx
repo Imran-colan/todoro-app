@@ -1,37 +1,6 @@
-import { Stack } from "expo-router";
+// app/_layout.tsx
+import Providers from './providers';
 
-export default function RootLayout() {
-  return (
-    <Stack>
-      <Stack.Screen
-        name="index"
-        options={{
-          headerShown: true,
-          title: "Home",
-          headerStyle: {
-            backgroundColor: '#f4511e',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}
-      />
-      <Stack.Screen
-        name="(page)"
-        options={{
-          headerShown: true,
-          title: "Important",
-          headerStyle: {
-            backgroundColor: '#f45119',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}
-      />
-      {/* <Stack.Screen name="(page)" options={{ headerShown: false }} /> */}
-    </Stack>
-  );
+export default function Layout() {
+  return <Providers />;
 }

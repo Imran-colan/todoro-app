@@ -24,11 +24,10 @@ export const register = async (email: string, password: string) => {
     }
 }
 
-export const getUserInfo = async (email: string, password: string) => {
+export const fetchUser = async () => {
     try {
-        const response = await ApiService.post('/auth/getUserData', {
-            email, password
-        });
+        const response = await ApiService.get('/auth/getUserData');
+        console.log("response.data user: " ,response.data)
         return response.data;
     } catch (error) {
         console.log(error);

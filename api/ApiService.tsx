@@ -11,7 +11,7 @@ ApiService.interceptors.request.use(
   async (config) => {
     const token = await AppStorage.getItem(KEY_JWT_SESSION);
     if (token != null && token != undefined) {
-      config.headers.Authorization = token;
+      config.headers.Authorization = "Bearer " + token;
     }
     return config;
   },
